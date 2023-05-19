@@ -30,7 +30,6 @@ export class AuthService {
     }
 
     // Step 3: Generate a JWT containing the user's ID and return it
-    // TODO: continue from here https://www.prisma.io/blog/nestjs-prisma-authentication-7D056s1s0k3l
     return {
       accessToken: this.jwtService.sign({ userId: user.id }),
     };
