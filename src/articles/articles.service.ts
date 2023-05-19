@@ -12,7 +12,10 @@ export class ArticlesService {
   }
 
   findAll() {
-    return this.prisma.article.findMany({ where: { published: true } });
+    return this.prisma.article.findMany({
+      where: { published: true },
+      include: { author: true },
+    });
   }
 
   findDrafts() {
@@ -20,12 +23,16 @@ export class ArticlesService {
   }
 
   findOne(id: number) {
-    return this.prisma.article.findUnique({ where: { id } });
+    return this.prisma.article.findUnique({
+      where: { id },
+      include: { author: true },
+    });
   }
 
   update(id: number, updateArticleDto: UpdateArticleDto) {
     return this.prisma.article.update({
       where: { id },
+      include: { author: true },
       data: updateArticleDto,
     });
   }
